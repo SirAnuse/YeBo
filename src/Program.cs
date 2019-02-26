@@ -2,14 +2,22 @@
 
 namespace YeBo
 {
-	class Program
+    /* Current startup process:
+     * Program runs -> loads config -> initializes Loop
+     * 
+     * Since nothing has been implemented yet, after this happens, the program closes after
+     * a ReadKey function.
+     */
+
+    class Program
 	{
 		private static string configPath = "config.json";
 		
 		public static void Main(string[] args)
 		{
-			Config.Load(configPath);
-			GameLoop.Initialize();
+            Log.CreateLogInstances();
+            Config.Load(configPath);
+            Loop.Initialize();
 			Console.ReadKey();
 		}
 	}
