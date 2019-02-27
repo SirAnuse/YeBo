@@ -19,7 +19,13 @@ namespace YeBo
                 if (t.IsAssignableFrom(i) && i != t)
                 {
                     Command instance = (Command) Activator.CreateInstance(i);
+                    
                     cmds.Add(instance.Name, instance);
+                    if (instance.Aliases != null)
+                    {
+                    	foreach (var alias in instance.Aliases)
+                    		cmds.Add(alias, instance);
+                    }
                 }
             Log = new Log("CommandHandler");
 		}

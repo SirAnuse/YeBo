@@ -3,5 +3,5 @@
   "LoggingLevel": 0,
   "LoggingMode": 0,
   "LogPath": "logs/",
-  "TPS": 5
+  "TPS": 1000
 }

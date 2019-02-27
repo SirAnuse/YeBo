@@ -43,7 +43,6 @@ namespace YeBo
 			}
 			catch
 			{
-				
 			}
 		}
 		
@@ -106,7 +105,7 @@ namespace YeBo
         
 		public void Stop()
 		{
-            Log.Debug($"{name} thread has been stopped.");
+            //Log.Debug($"{name} thread has been stopped.");
             OnStop();
 			active = false;
 			loopThread.Abort();

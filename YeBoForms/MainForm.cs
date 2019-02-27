@@ -57,7 +57,6 @@ namespace YeBoForms
             loc.Y = outputBox.Height + 2;
             inputBox.Location = loc;
             inputBox.Width = Width - 18;
-            Log.Debug($"Width: {outputBox.Width}, Height: {outputBox.Height}");
         }
     }
 }

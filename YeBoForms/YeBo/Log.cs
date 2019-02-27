@@ -41,7 +41,7 @@ namespace YeBo
             box.SelectionColor = color;
             box.SelectionFont = font;
             box.AppendText(addNewLine
-            ? $"{text}{Environment.NewLine}"
+            ? text + Environment.NewLine
             : text);
             box.SelectionColor = box.ForeColor;
         }
@@ -56,18 +56,16 @@ namespace YeBo
                 box.SelectionColor = color;
                 box.SelectionFont = box.Font;
                 if (box.Text == string.Empty)
-                    box.AppendText(addNewLine
-                ? $"{text}"
-                : text);
+                    box.AppendText(text);
                 else
                     box.AppendText(addNewLine
-                    ? $"{Environment.NewLine}{text}"
+                    ? Environment.NewLine + text
                     : text);
                 box.SelectionColor = box.ForeColor;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error outputting to log:\n{ex}", "Error");
+                MessageBox.Show("Error outputting to log:\n"+ex, "Error");
             }
         }
     }
