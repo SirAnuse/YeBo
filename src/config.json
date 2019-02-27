@@ -2,6 +2,6 @@
   "Debug": false,
   "LoggingLevel": 0,
   "LoggingMode": 0,
-  "LogPath": "/logs/",
+  "LogPath": "logs/",
   "TPS": 5
 }

@@ -80,7 +80,7 @@ namespace YeBo
                     if (LogFile == null)
                         queuedLogs.Add(log);
                     else
-                        File.AppendAllText(LogFile, log);
+                        File.AppendAllText(LogFile, "\n" + log);
                     break;
                 case Mode.ConsoleOnly:
                     break;
