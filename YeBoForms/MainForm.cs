@@ -14,13 +14,15 @@ namespace YeBoForms
 {
     public partial class MainForm : Form
     {
+        public static Log Log;
+
         public MainForm()
         {
             InitializeComponent();
             Main.SetOutputBox(outputBox);
             Main.SetOutputForm(this);
             Main.Initialize();
-            
+            Log = new Log("MainForm");
         }
 
         private void inputBox_KeyDown(object sender, KeyEventArgs e)
@@ -45,6 +47,17 @@ namespace YeBoForms
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Main.StopThreads();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            outputBox.Width = Width - 18;
+            outputBox.Height = Height - 68;
+            var loc = inputBox.Location;
+            loc.Y = outputBox.Height + 2;
+            inputBox.Location = loc;
+            inputBox.Width = Width - 18;
+            Log.Debug($"Width: {outputBox.Width}, Height: {outputBox.Height}");
         }
     }
 }

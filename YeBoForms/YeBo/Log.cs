@@ -55,9 +55,14 @@ namespace YeBo
 
                 box.SelectionColor = color;
                 box.SelectionFont = box.Font;
-                box.AppendText(addNewLine
-                ? $"{text}{Environment.NewLine}"
+                if (box.Text == string.Empty)
+                    box.AppendText(addNewLine
+                ? $"{text}"
                 : text);
+                else
+                    box.AppendText(addNewLine
+                    ? $"{Environment.NewLine}{text}"
+                    : text);
                 box.SelectionColor = box.ForeColor;
             }
             catch (Exception ex)

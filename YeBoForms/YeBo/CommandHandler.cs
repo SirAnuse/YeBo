@@ -32,12 +32,13 @@ namespace YeBo
 		public bool ProcessCommand(string command)
 		{
 			int index = command.IndexOf(' ');
+            string cmd = command.Substring(0, index == -1 ? command.Length : index);
             string args = index == -1 ? "" : command.Substring(index + 1);
 
             Command commandClass;
-            if (!cmds.TryGetValue(command, out commandClass))
+            if (!cmds.TryGetValue(cmd, out commandClass))
             {
-            	Log.Warning("Undefined command '" + command + "'!");
+            	Log.Warning("Undefined command '" + cmd + "'!");
                 return false;
             }
             return commandClass.Execute(args);

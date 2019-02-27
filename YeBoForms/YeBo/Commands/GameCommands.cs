@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace YeBo.Commands
 {
@@ -11,7 +12,7 @@ namespace YeBo.Commands
 		
 		protected override bool Process(string[] args)
 		{
-            CommandHandler.Log.Debug("test");
+            
 			return true;
 		}
 	}

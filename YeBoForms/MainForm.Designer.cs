@@ -40,7 +40,7 @@
             this.inputBox.ForeColor = System.Drawing.Color.LightGray;
             this.inputBox.Location = new System.Drawing.Point(1, 421);
             this.inputBox.Name = "inputBox";
-            this.inputBox.Size = new System.Drawing.Size(886, 26);
+            this.inputBox.Size = new System.Drawing.Size(885, 26);
             this.inputBox.TabIndex = 1;
             this.inputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputBox_KeyDown);
             // 
@@ -66,11 +66,11 @@
             this.ClientSize = new System.Drawing.Size(888, 448);
             this.Controls.Add(this.outputBox);
             this.Controls.Add(this.inputBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "YeBo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
