@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace YeBo
 {
-    /* Function documentation:
-     * - Constructor (Inputs: none): Instantiate a logger, set the start time, and set Initialized to true.
-     * - Initialize (Inputs: none): Instantiate a new Loop instance, and start it. Sets Instance to the new one.
-     */
-	
+	// The main loop which ticks all others.
     public class MasterLoop : Loop
     {
     	public MasterLoop() : base("MasterLoop")
@@ -21,11 +18,11 @@ namespace YeBo
     	
 		protected override void OnStart()
 		{
+            loopThread.Start();
 		}
 		
 		protected override void OnStop()
 		{
-
 		}
 		
 		protected override void OnTick()
@@ -38,10 +35,10 @@ namespace YeBo
 					{
 						if (this == i)
 							continue;
-						
-						i.Tick();
+
+                        Task.Run(() => i.Tick());
 					}
-					Thread.Sleep(restMs);
+                    Thread.Sleep(restMs);
 				}
 			}
 			catch
@@ -52,6 +49,7 @@ namespace YeBo
 		
 		protected override void OnInitialize()
 		{
+            active = true;
 			Start();
 		}
     }
@@ -60,13 +58,15 @@ namespace YeBo
 	{
     	public static List<Loop> Loops;
     	
-    	public static Loop Instance;
+    	public Loop Instance;
     	
         protected readonly Log Log;
         protected readonly string name;
         protected readonly int restMs;
         protected readonly Thread loopThread;
         protected readonly DateTime loopStart;
+
+        public int Ticks;
         
         public bool active;
 
@@ -79,6 +79,7 @@ namespace YeBo
             restMs = 1000 / ValidateTPS();
             Log.Debug("Adding loop: " + name + ".");
             Loops.Add(this);
+            Instance = this;
 		}
         
         protected abstract void OnStart();
@@ -105,15 +106,15 @@ namespace YeBo
         
 		public void Stop()
 		{
-			OnStop();
+            Log.Debug($"{name} thread has been stopped.");
+            OnStop();
 			active = false;
 			loopThread.Abort();
-			Log.Info("Loop has been stopped.");
-			
 		}
 
         public void Tick()
         {
+            Ticks++;
         	OnTick(); 
         }
         
