@@ -1,1 +1,1 @@
-This obviously has a long way to go. Currently suffers from overcommenting.
+This obviously has a long way to go.
