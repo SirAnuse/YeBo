@@ -1,0 +1,7 @@
+﻿{
+  "Debug": false,
+  "LoggingLevel": 0,
+  "LoggingMode": 0,
+  "LogPath": "logs/",
+  "TPS": 1000
+}
